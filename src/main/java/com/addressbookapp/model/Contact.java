@@ -17,4 +17,5 @@ public class Contact {
 	private String zip;
 	private String phoneNumber;
 	private String email;
+	
 }
