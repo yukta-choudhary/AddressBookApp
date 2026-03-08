@@ -44,4 +44,6 @@ public interface AddressBookService {
 	void saveAddressBookToJSON(String bookName);
 
 	void loadAddressBookFromJSON(String bookName);
+	
+	List<Contact> getContactsFromDatabase();
 }

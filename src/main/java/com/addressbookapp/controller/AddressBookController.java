@@ -56,7 +56,8 @@ public class AddressBookController {
 			case 19 -> loadFromCSV();
 			case 20 -> saveToJSON();
 			case 21 -> loadFromJSON();
-			case 22 -> running = false;
+			case 22 -> retrieveFromDatabase();
+			case 23 -> running = false;
 
 			}
 		}
@@ -85,7 +86,8 @@ public class AddressBookController {
 		System.out.println("19 Load Address Book from CSV");
 		System.out.println("20 Save Address Book as JSON");
 		System.out.println("21 Load Address Book from JSON");
-		System.out.println("22 Exit");
+		System.out.println("22 Retrieve Contacts From Database");
+		System.out.println("23 Exit");
 	}
 
 	private void addAddressBook() {
@@ -342,6 +344,18 @@ public class AddressBookController {
 		String book = scanner.nextLine();
 
 		service.loadAddressBookFromJSON(book);
+	}
+
+	private void retrieveFromDatabase() {
+
+		List<Contact> contacts = service.getContactsFromDatabase();
+
+		if (contacts.isEmpty()) {
+			System.out.println("No contacts found.");
+			return;
+		}
+
+		contacts.forEach(System.out::println);
 	}
 
 }

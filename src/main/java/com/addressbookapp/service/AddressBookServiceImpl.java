@@ -3,6 +3,7 @@ package com.addressbookapp.service;
 import com.addressbookapp.manager.AddressBookManager;
 import com.addressbookapp.model.AddressBook;
 import com.addressbookapp.model.Contact;
+import com.addressbookapp.repository.AddressBookDBRepository;
 import com.addressbookapp.repository.AddressBookRepository;
 import org.springframework.stereotype.Service;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -31,10 +32,13 @@ public class AddressBookServiceImpl implements AddressBookService {
 
 	private final AddressBookRepository repository;
 	private final AddressBookManager manager;
+	private final AddressBookDBRepository dbRepository;
 
-	public AddressBookServiceImpl(AddressBookRepository repository, AddressBookManager manager) {
+	public AddressBookServiceImpl(AddressBookRepository repository, AddressBookManager manager,
+			AddressBookDBRepository dbRepository) {
 		this.repository = repository;
 		this.manager = manager;
+		this.dbRepository = dbRepository;
 	}
 
 	@Override
@@ -360,5 +364,10 @@ public class AddressBookServiceImpl implements AddressBookService {
 		} catch (Exception e) {
 			System.out.println("JSON file not found.");
 		}
+	}
+
+	@Override
+	public List<Contact> getContactsFromDatabase() {
+		return dbRepository.getAllContacts();
 	}
 }
