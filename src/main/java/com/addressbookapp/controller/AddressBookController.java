@@ -57,7 +57,8 @@ public class AddressBookController {
 			case 20 -> saveToJSON();
 			case 21 -> loadFromJSON();
 			case 22 -> retrieveFromDatabase();
-			case 23 -> running = false;
+			case 23 -> updateContactDB();
+			case 24 -> running = false;
 
 			}
 		}
@@ -87,7 +88,8 @@ public class AddressBookController {
 		System.out.println("20 Save Address Book as JSON");
 		System.out.println("21 Load Address Book from JSON");
 		System.out.println("22 Retrieve Contacts From Database");
-		System.out.println("23 Exit");
+		System.out.println("23 Update Contact in Database");
+		System.out.println("24 Exit");
 	}
 
 	private void addAddressBook() {
@@ -356,6 +358,40 @@ public class AddressBookController {
 		}
 
 		contacts.forEach(System.out::println);
+	}
+
+	private void updateContactDB() {
+
+		System.out.println("Enter Address Book Name:");
+		String book = scanner.nextLine();
+
+		Contact contact = new Contact();
+
+		System.out.println("First Name:");
+		contact.setFirstName(scanner.nextLine());
+
+		System.out.println("Last Name:");
+		contact.setLastName(scanner.nextLine());
+
+		System.out.println("Address:");
+		contact.setAddress(scanner.nextLine());
+
+		System.out.println("City:");
+		contact.setCity(scanner.nextLine());
+
+		System.out.println("State:");
+		contact.setState(scanner.nextLine());
+
+		System.out.println("Zip:");
+		contact.setZip(scanner.nextLine());
+
+		System.out.println("Phone:");
+		contact.setPhoneNumber(scanner.nextLine());
+
+		System.out.println("Email:");
+		contact.setEmail(scanner.nextLine());
+
+		service.updateContactInDB(book, contact);
 	}
 
 }

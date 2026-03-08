@@ -39,4 +39,20 @@ public class Contact {
 		return firstName + " " + lastName + " | " + address + " | " + city + " | " + state + " | " + zip + " | "
 				+ phoneNumber + " | " + email;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj)
+			return true;
+
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+
+		Contact contact = (Contact) obj;
+
+		return firstName.equals(contact.firstName) && lastName.equals(contact.lastName)
+				&& address.equals(contact.address) && city.equals(contact.city) && state.equals(contact.state)
+				&& zip.equals(contact.zip) && phoneNumber.equals(contact.phoneNumber) && email.equals(contact.email);
+	}
 }

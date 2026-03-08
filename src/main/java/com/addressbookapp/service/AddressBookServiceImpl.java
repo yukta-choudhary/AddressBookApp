@@ -368,6 +368,59 @@ public class AddressBookServiceImpl implements AddressBookService {
 
 	@Override
 	public List<Contact> getContactsFromDatabase() {
-		return dbRepository.getAllContacts();
+
+		List<Contact> contacts = dbRepository.getAllContacts();
+
+		AddressBook book = manager.getAddressBook("Friends");
+
+		if (book != null) {
+			book.getContacts().clear();
+			book.getContacts().addAll(contacts);
+		}
+
+		return contacts;
+	}
+
+	@Override
+	public boolean updateContactInDB(String bookName, Contact updatedContact) {
+
+		AddressBook book = manager.getAddressBook(bookName);
+
+		if (book == null) {
+			System.out.println("Address Book not found.");
+			return false;
+		}
+
+		Contact existing = repository.findByFirstName(updatedContact.getFirstName(), book.getContacts());
+
+		if (existing == null) {
+			System.out.println("Contact not found.");
+			return false;
+		}
+
+		existing.setAddress(updatedContact.getAddress());
+		existing.setCity(updatedContact.getCity());
+		existing.setState(updatedContact.getState());
+		existing.setZip(updatedContact.getZip());
+		existing.setPhoneNumber(updatedContact.getPhoneNumber());
+		existing.setEmail(updatedContact.getEmail());
+
+		boolean dbUpdated = dbRepository.updateContact(updatedContact);
+
+		if (!dbUpdated) {
+			System.out.println("Database update failed");
+			return false;
+		}
+
+		Contact dbContact = dbRepository.getAllContacts().stream()
+				.filter(c -> c.getFirstName().equals(updatedContact.getFirstName())).findFirst().orElse(null);
+
+		boolean synced = updatedContact.equals(dbContact);
+
+		if (synced) {
+			System.out.println("Memory and Database are synchronized.");
+		}
+
+		return synced;
 	}
 }
