@@ -289,3 +289,15 @@ Implemented functionality to retrieve all contacts stored in the Address Book da
 
 ---
 
+
+## REFACTOR
+
+Refactored the system to ensure **JUnit Test cases are written for all Use Cases of the Address Book application**.
+
+**Actions Performed**
+
+- Added **JUnit test cases** for existing functionalities.
+- Ensured **code structure supports testing**.
+
+---
+
