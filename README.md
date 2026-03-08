@@ -113,3 +113,19 @@ Refactored the program to support multiple Address Books in the system.
 
 ---
 
+## UC7 – Prevent Duplicate Entry of Same Person
+
+Implemented validation to prevent duplicate contacts in the same Address Book.
+
+**Features Implemented**
+
+- Checked duplicate entries based on **person name**.
+- Used **Collection methods** to search contacts.
+- Overrode **equals() method** in Contact class.
+- Used **Java Streams** to check duplicate entries before adding.
+
+**GitHub Branch**
+
+[feature/UC7-prevent-duplicate-contact](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC7-prevent-duplicate-contact/src)
+
+---
