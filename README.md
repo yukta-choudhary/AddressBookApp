@@ -301,3 +301,22 @@ Refactored the system to ensure **JUnit Test cases are written for all Use Cases
 
 ---
 
+
+## UC17 – Ability to Update Contact Information and Sync with Database
+
+Implemented functionality to update contact information in the Address Book and ensure the data in memory remains synchronized with the database.
+
+**Features Implemented**
+
+- Used **JDBC for CRUD operations** with the database.
+- Used **PreparedStatement** to retrieve contact information for a specific person.
+- Updated contact details in the database.
+- Implemented **equals() method** to verify synchronization.
+- Used **JUnit tests** to validate memory and database consistency.
+
+**GitHub Branch**
+
+[feature/UC17-update-contact-and-sync-with-db](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC17-update-contact-and-sync-with-db)
+
+---
+
