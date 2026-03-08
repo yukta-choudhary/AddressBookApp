@@ -12,8 +12,11 @@ import com.addressbookapp.model.Contact;
 public class AddressBookAppApplication {
 
 	public static void main(String[] args) {
-
-		SpringApplication.run(AddressBookAppApplication.class, args);
+		
+		/* To stop a task on port */
+		SpringApplication app = new SpringApplication(AddressBookAppApplication.class);
+		app.setWebApplicationType(WebApplicationType.NONE);
+		ConfigurableApplicationContext context = app.run(args);
 
 		System.out.println("Welcome to Address Book");
 		
