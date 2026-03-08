@@ -21,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -239,8 +240,8 @@ public class AddressBookServiceImpl implements AddressBookService {
 			book.getContacts().clear();
 
 			List<Contact> contacts = Files.readAllLines(Path.of(bookName + ".txt")).stream()
-					.map(line -> line.split(","))
-					.map(data -> new Contact(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]))
+					.map(line -> line.split(",")).map(data -> new Contact(data[0], data[1], data[2], data[3], data[4],
+							data[5], data[6], data[7], null))
 					.toList();
 
 			book.getContacts().addAll(contacts);
@@ -422,5 +423,11 @@ public class AddressBookServiceImpl implements AddressBookService {
 		}
 
 		return synced;
+	}
+
+	@Override
+	public List<Contact> getContactsByDateRange(LocalDate start, LocalDate end) {
+
+		return dbRepository.getContactsByDateRange(start, end);
 	}
 }

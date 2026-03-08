@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class AddressBookDBRepository {
 
 				Contact contact = new Contact(rs.getString("first_name"), rs.getString("last_name"),
 						rs.getString("address"), rs.getString("city"), rs.getString("state"), rs.getString("zip"),
-						rs.getString("phone"), rs.getString("email"));
+						rs.getString("phone"), rs.getString("email"), rs.getDate("date_added").toLocalDate());
 
 				contacts.add(contact);
 			}
@@ -75,5 +76,38 @@ public class AddressBookDBRepository {
 			System.out.println("Database update failed");
 			return false;
 		}
+	}
+
+	public List<Contact> getContactsByDateRange(LocalDate start, LocalDate end) {
+
+		List<Contact> contacts = new ArrayList<>();
+
+		String query = """
+				SELECT * FROM contacts
+				WHERE date_added BETWEEN ? AND ?
+				""";
+
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query)) {
+
+			ps.setDate(1, java.sql.Date.valueOf(start));
+			ps.setDate(2, java.sql.Date.valueOf(end));
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				Contact contact = new Contact(rs.getString("first_name"), rs.getString("last_name"),
+						rs.getString("address"), rs.getString("city"), rs.getString("state"), rs.getString("zip"),
+						rs.getString("phone"), rs.getString("email"), rs.getDate("date_added").toLocalDate());
+
+				contacts.add(contact);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Database error");
+		}
+
+		return contacts;
 	}
 }

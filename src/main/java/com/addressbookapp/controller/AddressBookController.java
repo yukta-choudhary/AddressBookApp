@@ -5,6 +5,7 @@ import com.addressbookapp.model.Contact;
 import com.addressbookapp.service.AddressBookService;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,8 @@ public class AddressBookController {
 			case 21 -> loadFromJSON();
 			case 22 -> retrieveFromDatabase();
 			case 23 -> updateContactDB();
-			case 24 -> running = false;
+			case 24 -> retrieveContactsByDateRange();
+			case 25 -> running = false;
 
 			}
 		}
@@ -89,7 +91,8 @@ public class AddressBookController {
 		System.out.println("21 Load Address Book from JSON");
 		System.out.println("22 Retrieve Contacts From Database");
 		System.out.println("23 Update Contact in Database");
-		System.out.println("24 Exit");
+		System.out.println("24 Retrieve Contacts by Date Range");
+		System.out.println("25 Exit");
 	}
 
 	private void addAddressBook() {
@@ -392,6 +395,33 @@ public class AddressBookController {
 		contact.setEmail(scanner.nextLine());
 
 		service.updateContactInDB(book, contact);
+	}
+
+	private void retrieveContactsByDateRange() {
+
+		try {
+
+			System.out.println("Enter Start Date (YYYY-MM-DD):");
+			String startInput = scanner.nextLine();
+
+			System.out.println("Enter End Date (YYYY-MM-DD):");
+			String endInput = scanner.nextLine();
+
+			LocalDate start = LocalDate.parse(startInput);
+			LocalDate end = LocalDate.parse(endInput);
+
+			List<Contact> contacts = service.getContactsByDateRange(start, end);
+
+			if (contacts.isEmpty()) {
+				System.out.println("No contacts found in this date range.");
+				return;
+			}
+
+			contacts.forEach(System.out::println);
+
+		} catch (Exception e) {
+			System.out.println("Invalid date format.");
+		}
 	}
 
 }
