@@ -178,3 +178,18 @@ Implemented functionality to count number of contacts in each city or state.
 [feature/UC10-count-contacts-by-city-or-state](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC10-count-contacts-by-city-or-state/src)
 
 ---
+## UC11 – Ability to Sort Entries Alphabetically by Person’s Name
+
+Implemented functionality to sort all contact entries in the Address Book alphabetically by person's name.
+
+**Features Implemented**
+
+- Used **console option** to trigger sorting of contacts.
+- Sorted entries **alphabetically by person name**.
+- Used **Collection Library sorting methods**.
+- Overrode **toString() method** to properly print contact details in the console.
+- Used **Java Streams** for processing and sorting data.
+
+**GitHub Branch**
+
+[feature/UC11-sort-contacts-by-name](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC11-sort-contacts-by-name)
