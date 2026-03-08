@@ -351,3 +351,17 @@ Implemented functionality to count contacts stored in the database by city or st
 [feature/UC19-count-contacts-by-city-state-db](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC19-count-contacts-by-city-state-db)
 
 ---
+## UC20 – Ability to Add New Contact to Address Book Database
+
+Implemented functionality to insert new contacts into the Address Book database.
+
+**Features Implemented**
+
+- Used **JDBC for CRUD operations**.
+- Added new contact records to the database.
+- Implemented **database transactions** when multiple tables are affected.
+- Ensured **data consistency and integrity** during insertion.
+
+**GitHub Branch**
+
+[feature/UC20-add-contact-to-database](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC20-add-contact-to-database)
