@@ -12,7 +12,7 @@ public class AddressBookAppApplication {
 
 	public static void main(String[] args) {
 		
-		/* To stop a task on port */
+		/* Important */
 		SpringApplication app = new SpringApplication(AddressBookAppApplication.class);
 		app.setWebApplicationType(WebApplicationType.NONE);
 		ConfigurableApplicationContext context = app.run(args);
