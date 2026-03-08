@@ -1,47 +1,41 @@
 package com.addressbookapp.model;
 
+import com.opencsv.bean.CsvBindByName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contact {
 
+	@CsvBindByName
 	private String firstName;
+
+	@CsvBindByName
 	private String lastName;
+
+	@CsvBindByName
 	private String address;
+
+	@CsvBindByName
 	private String city;
+
+	@CsvBindByName
 	private String state;
+
+	@CsvBindByName
 	private String zip;
+
+	@CsvBindByName
 	private String phoneNumber;
+
+	@CsvBindByName
 	private String email;
 
 	@Override
-	public boolean equals(Object obj) {
-
-		if (this == obj)
-			return true;
-
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-
-		Contact contact = (Contact) obj;
-
-		return Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(firstName, lastName);
-	}
-
-	@Override
 	public String toString() {
-
 		return firstName + " " + lastName + " | " + address + " | " + city + " | " + state + " | " + zip + " | "
 				+ phoneNumber + " | " + email;
 	}

@@ -5,6 +5,10 @@ import com.addressbookapp.model.AddressBook;
 import com.addressbookapp.model.Contact;
 import com.addressbookapp.repository.AddressBookRepository;
 import org.springframework.stereotype.Service;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -238,6 +242,62 @@ public class AddressBookServiceImpl implements AddressBookService {
 
 		} catch (IOException e) {
 			System.out.println("File not found.");
+		}
+	}
+
+	@Override
+	public void saveAddressBookToCSV(String bookName) {
+
+		AddressBook book = manager.getAddressBook(bookName);
+
+		if (book == null) {
+			System.out.println("Address Book not found.");
+			return;
+		}
+
+		try {
+
+			FileWriter writer = new FileWriter(bookName + ".csv");
+
+			StatefulBeanToCsv<Contact> beanToCsv = new StatefulBeanToCsvBuilder<Contact>(writer).build();
+
+			beanToCsv.write(book.getContacts());
+
+			writer.close();
+
+			System.out.println("Address Book saved as CSV file.");
+
+		} catch (Exception e) {
+			System.out.println("Error writing CSV file.");
+		}
+	}
+
+	@Override
+	public void loadAddressBookFromCSV(String bookName) {
+
+		AddressBook book = manager.getAddressBook(bookName);
+
+		if (book == null) {
+			manager.addAddressBook(bookName);
+			book = manager.getAddressBook(bookName);
+		}
+
+		try {
+
+			FileReader reader = new FileReader(bookName + ".csv");
+
+			CsvToBean<Contact> csvToBean = new CsvToBeanBuilder<Contact>(reader).withType(Contact.class)
+					.withIgnoreLeadingWhiteSpace(true).build();
+
+			List<Contact> contacts = csvToBean.parse();
+
+			book.getContacts().clear();
+			book.getContacts().addAll(contacts);
+
+			System.out.println("Address Book loaded from CSV file.");
+
+		} catch (Exception e) {
+			System.out.println("CSV file not found.");
 		}
 	}
 }
