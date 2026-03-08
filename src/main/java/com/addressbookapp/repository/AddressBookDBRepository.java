@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class AddressBookDBRepository {
@@ -109,5 +111,55 @@ public class AddressBookDBRepository {
 		}
 
 		return contacts;
+	}
+
+	public Map<String, Long> countContactsByCity() {
+
+		Map<String, Long> result = new HashMap<>();
+
+		String query = """
+				SELECT city, COUNT(*) AS total
+				FROM contacts
+				GROUP BY city
+				""";
+
+		try (Connection connection = dataSource.getConnection();
+				Statement stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(query)) {
+
+			while (rs.next()) {
+				result.put(rs.getString("city"), rs.getLong("total"));
+			}
+
+		} catch (Exception e) {
+			System.out.println("Database error");
+		}
+
+		return result;
+	}
+
+	public Map<String, Long> countContactsByState() {
+
+		Map<String, Long> result = new HashMap<>();
+
+		String query = """
+				SELECT state, COUNT(*) AS total
+				FROM contacts
+				GROUP BY state
+				""";
+
+		try (Connection connection = dataSource.getConnection();
+				Statement stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(query)) {
+
+			while (rs.next()) {
+				result.put(rs.getString("state"), rs.getLong("total"));
+			}
+
+		} catch (Exception e) {
+			System.out.println("Database error");
+		}
+
+		return result;
 	}
 }

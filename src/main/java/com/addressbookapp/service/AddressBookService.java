@@ -49,6 +49,10 @@ public interface AddressBookService {
 	List<Contact> getContactsFromDatabase();
 
 	boolean updateContactInDB(String bookName, Contact contact);
-	
+
 	List<Contact> getContactsByDateRange(LocalDate start, LocalDate end);
+
+	Map<String, Long> getContactCountByCityFromDB();
+
+	Map<String, Long> getContactCountByStateFromDB();
 }

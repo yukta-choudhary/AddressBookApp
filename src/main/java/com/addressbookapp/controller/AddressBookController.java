@@ -60,7 +60,9 @@ public class AddressBookController {
 			case 22 -> retrieveFromDatabase();
 			case 23 -> updateContactDB();
 			case 24 -> retrieveContactsByDateRange();
-			case 25 -> running = false;
+			case 25 -> countContactsByCityDB();
+			case 26 -> countContactsByStateDB();
+			case 27 -> running = false;
 
 			}
 		}
@@ -92,7 +94,9 @@ public class AddressBookController {
 		System.out.println("22 Retrieve Contacts From Database");
 		System.out.println("23 Update Contact in Database");
 		System.out.println("24 Retrieve Contacts by Date Range");
-		System.out.println("25 Exit");
+		System.out.println("25 Count Contacts in DB by City");
+		System.out.println("26 Count Contacts in DB by State");
+		System.out.println("27 Exit");
 	}
 
 	private void addAddressBook() {
@@ -422,6 +426,20 @@ public class AddressBookController {
 		} catch (Exception e) {
 			System.out.println("Invalid date format.");
 		}
+	}
+
+	private void countContactsByCityDB() {
+
+		Map<String, Long> result = service.getContactCountByCityFromDB();
+
+		result.forEach((city, count) -> System.out.println(city + " : " + count));
+	}
+
+	private void countContactsByStateDB() {
+
+		Map<String, Long> result = service.getContactCountByStateFromDB();
+
+		result.forEach((state, count) -> System.out.println(state + " : " + count));
 	}
 
 }

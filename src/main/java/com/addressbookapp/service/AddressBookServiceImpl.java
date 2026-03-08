@@ -430,4 +430,14 @@ public class AddressBookServiceImpl implements AddressBookService {
 
 		return dbRepository.getContactsByDateRange(start, end);
 	}
+
+	@Override
+	public Map<String, Long> getContactCountByCityFromDB() {
+		return dbRepository.countContactsByCity();
+	}
+
+	@Override
+	public Map<String, Long> getContactCountByStateFromDB() {
+		return dbRepository.countContactsByState();
+	}
 }
