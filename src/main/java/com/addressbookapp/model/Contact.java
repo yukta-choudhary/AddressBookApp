@@ -38,4 +38,11 @@ public class Contact {
 	public int hashCode() {
 		return Objects.hash(firstName, lastName);
 	}
+
+	@Override
+	public String toString() {
+
+		return firstName + " " + lastName + " | " + address + " | " + city + " | " + state + " | " + zip + " | "
+				+ phoneNumber + " | " + email;
+	}
 }
