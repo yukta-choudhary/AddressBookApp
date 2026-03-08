@@ -336,3 +336,18 @@ Implemented functionality to retrieve contacts added during a specific time peri
 [feature/UC18-retrieve-contacts-by-date-range](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC18-retrieve-contacts-by-date-range)
 
 ---
+## UC19 – Ability to Retrieve Number of Contacts by City or State (Database)
+
+Implemented functionality to count contacts stored in the database by city or state.
+
+**Features Implemented**
+
+- Used **JDBC** for database operations.
+- Executed **database functions and queries** to calculate counts.
+- Displayed number of contacts grouped by **city or state**.
+
+**GitHub Branch**
+
+[feature/UC19-count-contacts-by-city-state-db](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC19-count-contacts-by-city-state-db)
+
+---
