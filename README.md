@@ -320,3 +320,19 @@ Implemented functionality to update contact information in the Address Book and 
 
 ---
 
+## UC18 – Ability to Retrieve Contacts Added Within a Particular Period
+
+Implemented functionality to retrieve contacts added during a specific time period.
+
+**Features Implemented**
+
+- Used **JDBC** for database operations.
+- Added **date_added field** in the database table.
+- Retrieved contacts based on **date range query**.
+- Displayed filtered results in the system.
+
+**GitHub Branch**
+
+[feature/UC18-retrieve-contacts-by-date-range](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC18-retrieve-contacts-by-date-range)
+
+---
