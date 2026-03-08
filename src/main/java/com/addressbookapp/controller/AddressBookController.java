@@ -62,7 +62,8 @@ public class AddressBookController {
 			case 24 -> retrieveContactsByDateRange();
 			case 25 -> countContactsByCityDB();
 			case 26 -> countContactsByStateDB();
-			case 27 -> running = false;
+			case 27 -> addContactToDatabase();
+			case 28 -> running = false;
 
 			}
 		}
@@ -96,7 +97,8 @@ public class AddressBookController {
 		System.out.println("24 Retrieve Contacts by Date Range");
 		System.out.println("25 Count Contacts in DB by City");
 		System.out.println("26 Count Contacts in DB by State");
-		System.out.println("27 Exit");
+		System.out.println("27 Add Contact to Database");
+		System.out.println("28 Exit");
 	}
 
 	private void addAddressBook() {
@@ -440,6 +442,37 @@ public class AddressBookController {
 		Map<String, Long> result = service.getContactCountByStateFromDB();
 
 		result.forEach((state, count) -> System.out.println(state + " : " + count));
+	}
+
+	private void addContactToDatabase() {
+
+		Contact contact = new Contact();
+
+		System.out.println("First Name:");
+		contact.setFirstName(scanner.nextLine());
+
+		System.out.println("Last Name:");
+		contact.setLastName(scanner.nextLine());
+
+		System.out.println("Address:");
+		contact.setAddress(scanner.nextLine());
+
+		System.out.println("City:");
+		contact.setCity(scanner.nextLine());
+
+		System.out.println("State:");
+		contact.setState(scanner.nextLine());
+
+		System.out.println("Zip:");
+		contact.setZip(scanner.nextLine());
+
+		System.out.println("Phone:");
+		contact.setPhoneNumber(scanner.nextLine());
+
+		System.out.println("Email:");
+		contact.setEmail(scanner.nextLine());
+
+		service.addContactToDatabase(contact);
 	}
 
 }

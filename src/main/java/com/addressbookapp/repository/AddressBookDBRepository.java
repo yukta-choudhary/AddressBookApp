@@ -162,4 +162,38 @@ public class AddressBookDBRepository {
 
 		return result;
 	}
+
+	public boolean addContactToDB(Contact contact) {
+
+		String query = """
+				INSERT INTO contacts
+				(first_name, last_name, address, city, state, zip, phone, email)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+				""";
+
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query)) {
+
+			connection.setAutoCommit(false); // Start transaction
+
+			ps.setString(1, contact.getFirstName());
+			ps.setString(2, contact.getLastName());
+			ps.setString(3, contact.getAddress());
+			ps.setString(4, contact.getCity());
+			ps.setString(5, contact.getState());
+			ps.setString(6, contact.getZip());
+			ps.setString(7, contact.getPhoneNumber());
+			ps.setString(8, contact.getEmail());
+
+			int rows = ps.executeUpdate();
+
+			connection.commit(); // Commit transaction
+
+			return rows > 0;
+
+		} catch (Exception e) {
+			System.out.println("Database insert failed");
+			return false;
+		}
+	}
 }

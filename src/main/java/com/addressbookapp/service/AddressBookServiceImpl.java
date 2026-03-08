@@ -440,4 +440,18 @@ public class AddressBookServiceImpl implements AddressBookService {
 	public Map<String, Long> getContactCountByStateFromDB() {
 		return dbRepository.countContactsByState();
 	}
+
+	@Override
+	public boolean addContactToDatabase(Contact contact) {
+
+		boolean inserted = dbRepository.addContactToDB(contact);
+
+		if (inserted) {
+			System.out.println("Contact added to database.");
+		} else {
+			System.out.println("Failed to add contact.");
+		}
+
+		return inserted;
+	}
 }
