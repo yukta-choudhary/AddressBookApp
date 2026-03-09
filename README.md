@@ -417,3 +417,21 @@ Implemented functionality to add multiple entries to JSON Server and sync with a
 [feature/UC23-add-multiple-entries-jsonserver](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC23-add-multiple-entries-jsonserver)
 
 ---
+
+
+## UC24 – Ability to Update Entry in Address Book JSONServer
+
+Implemented functionality to update Address Book entries in JSON Server.
+
+**Features Implemented**
+
+- Used **REST Assured** with **JUnit**.
+- Updated entries in **JSON Server**.
+- Synced updates with **application memory**.
+
+**GitHub Branch**
+
+[feature/UC24-update-entry-jsonserver](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC24-update-entry-jsonserver)
+
+---
+
