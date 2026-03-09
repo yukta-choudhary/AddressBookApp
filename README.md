@@ -435,3 +435,19 @@ Implemented functionality to update Address Book entries in JSON Server.
 
 ---
 
+## UC25 – Ability to Delete Entry in Address Book JSONServer
+
+Implemented functionality to delete entries from JSON Server.
+
+**Features Implemented**
+
+- Used **REST Assured** for API calls.
+- Deleted entries from **JSON Server**.
+- Synced deletion with **application memory**.
+
+**GitHub Branch**
+
+[feature/UC25-delete-entry-jsonserver](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC25-delete-entry-jsonserver)
+
+---
+
