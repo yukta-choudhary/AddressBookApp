@@ -59,4 +59,5 @@ public interface AddressBookService {
 	boolean addContactToDatabase(Contact contact);
 
 	void addMultipleContactsToDB(List<Contact> contacts);
+	
 }

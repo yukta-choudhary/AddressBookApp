@@ -38,7 +38,7 @@ public class Contact {
 	private String email;
 
 	// UC18 field
-	private LocalDate dateAdded;
+	private transient LocalDate dateAdded;
 
 	// NEW constructor for old code compatibility
 	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
