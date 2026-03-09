@@ -401,3 +401,19 @@ Implemented functionality to read Address Book entries from JSON Server.
 [feature/UC22-read-entries-from-jsonserver](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC22-read-entries-from-jsonserver)
 
 ---
+
+## UC23 – Ability to Add Multiple Entries to Address Book JSONServer
+
+Implemented functionality to add multiple entries to JSON Server and sync with application memory.
+
+**Features Implemented**
+
+- Used **REST Assured** for API calls.
+- Added **multiple entries** to JSON Server.
+- Synced data with **Address Book memory**.
+
+**GitHub Branch**
+
+[feature/UC23-add-multiple-entries-jsonserver](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC23-add-multiple-entries-jsonserver)
+
+---
