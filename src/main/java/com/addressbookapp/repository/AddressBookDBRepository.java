@@ -167,14 +167,14 @@ public class AddressBookDBRepository {
 
 		String query = """
 				INSERT INTO contacts
-				(first_name, last_name, address, city, state, zip, phone, email)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+				(first_name,last_name,address,city,state,zip,phone,email)
+				VALUES (?,?,?,?,?,?,?,?)
 				""";
 
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query)) {
 
-			connection.setAutoCommit(false); // Start transaction
+			connection.setAutoCommit(false);
 
 			ps.setString(1, contact.getFirstName());
 			ps.setString(2, contact.getLastName());
@@ -185,15 +185,16 @@ public class AddressBookDBRepository {
 			ps.setString(7, contact.getPhoneNumber());
 			ps.setString(8, contact.getEmail());
 
-			int rows = ps.executeUpdate();
+			ps.executeUpdate();
 
-			connection.commit(); // Commit transaction
+			connection.commit();
 
-			return rows > 0;
+			return true;
 
 		} catch (Exception e) {
-			System.out.println("Database insert failed");
+			System.out.println("Insert failed");
 			return false;
 		}
 	}
+
 }

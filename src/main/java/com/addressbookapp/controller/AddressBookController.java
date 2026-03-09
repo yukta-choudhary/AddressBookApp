@@ -6,6 +6,7 @@ import com.addressbookapp.service.AddressBookService;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,8 @@ public class AddressBookController {
 			case 25 -> countContactsByCityDB();
 			case 26 -> countContactsByStateDB();
 			case 27 -> addContactToDatabase();
-			case 28 -> running = false;
+			case 28 -> addMultipleContactsToDatabase();
+			case 29 -> running = false;
 
 			}
 		}
@@ -98,7 +100,8 @@ public class AddressBookController {
 		System.out.println("25 Count Contacts in DB by City");
 		System.out.println("26 Count Contacts in DB by State");
 		System.out.println("27 Add Contact to Database");
-		System.out.println("28 Exit");
+		System.out.println("28 Add Multiple Contacts to Database");
+		System.out.println("29 Exit");
 	}
 
 	private void addAddressBook() {
@@ -473,6 +476,47 @@ public class AddressBookController {
 		contact.setEmail(scanner.nextLine());
 
 		service.addContactToDatabase(contact);
+	}
+
+	private void addMultipleContactsToDatabase() {
+
+		List<Contact> contacts = new ArrayList<>();
+
+		System.out.println("How many contacts to add?");
+		int n = Integer.parseInt(scanner.nextLine());
+
+		for (int i = 0; i < n; i++) {
+
+			Contact contact = new Contact();
+
+			System.out.println("First Name:");
+			contact.setFirstName(scanner.nextLine());
+
+			System.out.println("Last Name:");
+			contact.setLastName(scanner.nextLine());
+
+			System.out.println("Address:");
+			contact.setAddress(scanner.nextLine());
+
+			System.out.println("City:");
+			contact.setCity(scanner.nextLine());
+
+			System.out.println("State:");
+			contact.setState(scanner.nextLine());
+
+			System.out.println("Zip:");
+			contact.setZip(scanner.nextLine());
+
+			System.out.println("Phone:");
+			contact.setPhoneNumber(scanner.nextLine());
+
+			System.out.println("Email:");
+			contact.setEmail(scanner.nextLine());
+
+			contacts.add(contact);
+		}
+
+		service.addMultipleContactsToDB(contacts);
 	}
 
 }

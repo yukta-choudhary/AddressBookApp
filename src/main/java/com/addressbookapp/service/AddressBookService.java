@@ -55,6 +55,8 @@ public interface AddressBookService {
 	Map<String, Long> getContactCountByCityFromDB();
 
 	Map<String, Long> getContactCountByStateFromDB();
-	
+
 	boolean addContactToDatabase(Contact contact);
+
+	void addMultipleContactsToDB(List<Contact> contacts);
 }

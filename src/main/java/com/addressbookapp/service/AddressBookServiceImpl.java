@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -453,5 +454,37 @@ public class AddressBookServiceImpl implements AddressBookService {
 		}
 
 		return inserted;
+	}
+
+	@Override
+	public void addMultipleContactsToDB(List<Contact> contacts) {
+
+		List<Thread> threads = new ArrayList<>();
+
+		for (Contact contact : contacts) {
+
+			Thread thread = new Thread(() -> {
+
+				boolean inserted = dbRepository.addContactToDB(contact);
+
+				if (inserted) {
+					System.out.println(contact.getFirstName() + " added by " + Thread.currentThread().getName());
+				}
+
+			});
+
+			threads.add(thread);
+			thread.start();
+		}
+
+		for (Thread thread : threads) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				System.out.println("Thread interrupted");
+			}
+		}
+
+		System.out.println("All contacts inserted.");
 	}
 }
