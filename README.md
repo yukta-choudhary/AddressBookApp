@@ -11,3 +11,23 @@ AddressBookApp is a Spring Boot based application used to manage contacts in an 
 
 [START](https://github.com/yukta-choudhary/AddressBookApp/tree/main/src)
 
+---
+# Section 1: Streams API
+---
+
+## UC1 – Ability to Create a Contact in Address Book
+
+Implemented the ability to create a **Contact** with required personal and address details.
+
+**Features Implemented**
+
+- Created a `Contact` class.
+- Added fields
+- Applied Object-Oriented Programming concepts.
+- Followed proper naming conventions and code hygiene.
+
+**GitHub Branch**
+
+[feature/UC1-create-contact](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC1-create-contact/src)
+
+---
