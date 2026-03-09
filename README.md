@@ -365,3 +365,5 @@ Implemented functionality to insert new contacts into the Address Book database.
 **GitHub Branch**
 
 [feature/UC20-add-contact-to-database](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC20-add-contact-to-database)
+
+---
