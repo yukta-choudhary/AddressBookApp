@@ -367,3 +367,21 @@ Implemented functionality to insert new contacts into the Address Book database.
 [feature/UC20-add-contact-to-database](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC20-add-contact-to-database)
 
 ---
+# Section 4: Threads 
+---
+## UC21 – Ability to Add Multiple Contacts to the Address Book Database
+
+Implemented functionality to insert multiple contacts into the Address Book database.
+
+**Features Implemented**
+
+- Used **JDBC** for CRUD operations.
+- Inserted **multiple contacts** into the database.
+- Implemented **DB transactions** for multiple table updates.
+- Used **multithreading** for concurrent insertions.
+
+**GitHub Branch**
+
+[feature/UC21-add-multiple-contacts-multithreading](https://github.com/yukta-choudhary/AddressBookApp/tree/feature/UC21-add-multiple-contacts-multithreading)
+
+---
